@@ -1,21 +1,20 @@
+// endpointy do wyswietlania, dodawania i edytowania danych uzytkownika
+
 import express from "express";
-import { getUser } from "../controllers/user.js";
+import { getUser, getDocument, getAddress, addDoc, addAddress, changeAddress, changeDoc, changeUserInfo } from "../controllers/user.js";
 
 const router = express.Router()
 
+router.get("/userProfile", getUser)
+router.get("/documentInfo", getDocument)
+router.get("/addressInfo", getAddress)
 
-/* pisanie tego  w ten sposób, w tym miejscu nie jest
-   zbyt dobrym pomyslem, dlatego po endpoincie będziemy po prostu 
-   wywoływać funkcę z folderu controller
+router.post("/addDocument", addDoc)
+router.post("/addAddress", addAddress)
 
-router.get("/test", (req, res) => {
-    res.send("backend działa :3")
-})
-
-zamiast tego mamy robić tak:
-*/
-
-router.get("/find/:userId", getUser)
+router.put("/changeDocument", changeDoc)
+router.put("/changeUserInfo", changeUserInfo)
+router.put("/changeAddress", changeAddress)
 
 
 export default router

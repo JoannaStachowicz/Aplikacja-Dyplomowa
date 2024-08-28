@@ -1,3 +1,5 @@
+// endpointy do rejestracji, logowania i wylogowywania uzytkownika
+
 import express from "express";
 import { login, logout, register } from "../controllers/auth.js"
 

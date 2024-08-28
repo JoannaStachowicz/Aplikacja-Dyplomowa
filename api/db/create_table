@@ -1,3 +1,5 @@
+-- Opis tabel w bazie danych 
+
 CREATE TABLE IF NOT EXISTS addresses (
     id SERIAL PRIMARY KEY,
     street VARCHAR(255) NOT NULL,
@@ -7,6 +9,9 @@ CREATE TABLE IF NOT EXISTS addresses (
     post_code VARCHAR(10) NOT NULL,
     country VARCHAR(100) NOT NULL
 );
+
+-- poniewaz zakladamy, ze w przyszlosci aplikacja będzie miała dostęp do mObywatela,
+--  tej wersji wystarczy posiadać informacje o danych dokumentu
 
 CREATE TABLE IF NOT EXISTS documents (
     id SERIAL PRIMARY KEY,
@@ -19,10 +24,6 @@ CREATE TABLE IF NOT EXISTS documents (
 -- poniewaz logowane jest dwuetapowe, na początku będziemy uzupelniac tylko
 -- pesel, email, pwd, firstname, surname
 -- address_id i document_id beda uzupelnione juz pozniej na profilu 
--- przy pomocy fcji UPDATE 
-
--- poniewaz zakladamy, ze w przyszlosci aplikacja będzie miała dostęp do mObywatela,
--- więc nie musimy bawić się w przesyłanie skanów dokumentów tozsamości -> wystarczy numer dokumentu i data wygaśnięcia 
 
 
 CREATE TABLE IF NOT EXISTS users (
@@ -46,14 +47,19 @@ CREATE TABLE IF NOT EXISTS vehicles (
     model VARCHAR(50) NOT NULL, 
     vehicle_type VARCHAR(255) NOT NULL,
     registration_number VARCHAR(30) NOT NULL,   
-    technical_inspection_due_date DATE,        
+    technical_inspection_due_date VARCHAR, -- formatu 'YYYY-MM-DD'       
     production_year INT CHECK (production_year >= 1886), 
-    fuel_type VARCHAR(50)
+    fuel_type VARCHAR(50),
+    first_side_homologation_doc VARCHAR(200),
+    second_side_homologation_doc VARCHAR(200),
+    body_style VARCHAR(100)
 );
 
 -- data rozpoczęcia oraz zakończenia własności samochodu przez uzytkownika 
--- będzie słuzyc głownie w kwestiach takich jak: sledzenie historii wlasciciela pojazdu, prowadzenie raportow (jak dlugo dany uzytkownik posiadał dany pojazd etc.), są to głównie informacje do dyspozycji urzędu komunikacji, ewentualnie do rozstrzygania spornych kwestii w stylu: do kogo nalezal dany pojazd w kwestii np. 
-
+-- będzie słuzyc głownie w kwestiach takich jak: sledzenie historii wlasciciela pojazdu, prowadzenie raportow 
+-- (jak dlugo dany uzytkownik posiadał dany pojazd etc.), są to głównie informacje do dyspozycji urzędu komunikacji
+-- (w przypadku rozszerzenia aplikacji),
+--  ewentualnie do rozstrzygania spornych kwestii w stylu: do kogo nalezal dany pojazd, gdy zostal wystawiony mandat etc.
 
 CREATE TABLE IF NOT EXISTS vehicles_users (
     id SERIAL PRIMARY KEY,
@@ -65,6 +71,9 @@ CREATE TABLE IF NOT EXISTS vehicles_users (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TYPE status_enum AS ENUM ('oczekuje', 'zaakceptowano', 'odrzucono');
+
+-- tabela forms została rozszerzona o kolumnę status typu status_enum
 
 CREATE TABLE IF NOT EXISTS forms (
     id SERIAL PRIMARY KEY,
@@ -72,6 +81,8 @@ CREATE TABLE IF NOT EXISTS forms (
     ex_owner_id INT NOT NULL,
     new_owner_id INT NOT NULL,
     form_vehicle_id INT NOT NULL,
+    first_side_sale_agreement VARCHAR(200),
+    second_side_sale_agreement VARCHAR(200),
     FOREIGN KEY (ex_owner_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (new_owner_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (form_vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE ON UPDATE CASCADE

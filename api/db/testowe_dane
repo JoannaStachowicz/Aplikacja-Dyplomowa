@@ -25,61 +25,58 @@ INSERT INTO documents (document_number, document_type, issue_date, expiry) VALUE
 
 
 INSERT INTO users (pesel, email, pwd, first_name, surname, phone_number, address_id, document_id) VALUES
-('12345678901', 'john.doe@example.com', 'hashedpassword1', 'John', 'Doe', '+12345678901', 1, 1),
-('23456789012', 'jane.smith@example.com', 'hashedpassword2', 'Jane', 'Smith', '+19876543210', 2, 2),
-('34567890123', 'mike.johnson@example.com', 'hashedpassword3', 'Mike', 'Johnson', '+14155555555', 3, 3),
-('45678901234', 'laura.wilson@example.com', 'hashedpassword4', 'Laura', 'Wilson', '+16175555555', 4, 4),
-('56789012345', 'robert.brown@example.com', 'hashedpassword5', 'Robert', 'Brown', '+17185555555', 5, 5),
-('67890123456', 'jessica.lee@example.com', 'hashedpassword6', 'Jessica', 'Lee', '+18295555555', 6, 6),
-('78901234567', 'david.white@example.com', 'hashedpassword7', 'David', 'White', '+19305555555', 7, 7),
-('89012345678', 'emily.davis@example.com', 'hashedpassword8', 'Emily', 'Davis', '+10415555555', 8, 8),
-('90123456789', 'daniel.green@example.com', 'hashedpassword9', 'Daniel', 'Green', '+11525555555', 9, 9),
-('01234567890', 'mia.khalifa@example.com', 'hashedpassword10', 'Mia', 'Khalifa', '+12635555555', 10, 10);
+('44051401359', 'jan.kowalski@example.com', 'hashedpassword1', 'Jan', 'Kowalski', '+48123456789', 1, 1),
+('52031101472', 'anna.nowak@example.com', 'hashedpassword2', 'Anna', 'Nowak', '+48234567890', 2, 2),
+('80070802788', 'mariusz.kaczmarek@example.com', 'hashedpassword3', 'Mariusz', 'Kaczmarek', '+48345678901', 3, 3),
+('72030604569', 'agnieszka.wozniak@example.com', 'hashedpassword4', 'Agnieszka', 'Woźniak', '+48456789012', 4, 4),
+('66061607890', 'krzysztof.michalak@example.com', 'hashedpassword5', 'Krzysztof', 'Michalak', '+48567890123', 5, 5),
+('55031005128', 'magdalena.jankowska@example.com', 'hashedpassword6', 'Magdalena', 'Jankowska', '+48678901234', 6, 6),
+('61010102911', 'pawel.kowalczyk@example.com', 'hashedpassword7', 'Paweł', 'Łodyg', '+48789012345', 7, 7),
+('51120606322', 'justyna.maj@example.com', 'hashedpassword8', 'Justyna', 'Maj', '+48890123456', 8, 8),
+('61111203345', 'tomasz.adamczyk@example.com', 'hashedpassword9', 'Tomasz', 'Adamczyk', '+48901234567', 9, 9),
+('83040807322', 'karolina.duda@example.com', 'hashedpassword10', 'Karolina', 'Duda', '+48101010101', 10, 10);
 
 
-INSERT INTO vehicles (vin, make, model, vehicle_type, registration_number, technical_inspection_due_date, production_year, fuel_type) VALUES
-('1HGBH41JXMN109186', 'Toyota', 'Camry', 'Sedan', 'XYZ1234', '2024-06-30', 2020, 'Gasoline'),
-('2FMDK3JC9FBB01234', 'Ford', 'Escape', 'SUV', 'ABC5678', '2023-09-15', 2019, 'Diesel'),
-('3C4PDCAB4JT569874', 'Honda', 'Civic', 'Sedan', 'LMN9012', '2025-02-28', 2021, 'Hybrid'),
-('4T1BF1FK0HU123456', 'Chevrolet', 'Malibu', 'Sedan', 'OPQ3456', '2024-05-15', 2018, 'Gasoline'),
-('5XYKT3A64FG123456', 'Hyundai', 'Tucson', 'SUV', 'RST7890', '2024-11-20', 2022, 'Gasoline'),
-('6FMPK4JX5HGB01234', 'Mazda', 'CX-5', 'SUV', 'UVW1234', '2023-12-31', 2020, 'Diesel'),
-('7FMAK4JX5HGC56789', 'Nissan', 'Altima', 'Sedan', 'XYZ7890', '2025-07-01', 2021, 'Hybrid'),
-('8FMDK3JC9FBB01235', 'Subaru', 'Forester', 'SUV', 'ABC0123', '2023-08-15', 2019, 'Gasoline'),
-('9C4PDCAB4JT569875', 'Volkswagen', 'Jetta', 'Sedan', 'LMN3456', '2024-10-20', 2022, 'Gasoline'),
-('X1HGBH41JXMN109187', 'Kia', 'Sorento', 'SUV', 'OPQ5678', '2023-06-30', 2020, 'Diesel'),
-('Y2FMDK3JC9FBB01236', 'Chrysler', '300', 'Sedan', 'RST9012', '2025-05-15', 2021, 'Gasoline'),
-('Z3C4PDCAB4JT569876', 'Jeep', 'Cherokee', 'SUV', 'UVW1235', '2024-02-28', 2019, 'Hybrid'),
-('A4T1BF1FK0HU123457', 'Buick', 'Enclave', 'SUV', 'XYZ1235', '2023-12-31', 2022, 'Gasoline'),
-('B5XYKT3A64FG123457', 'GMC', 'Sierra', 'Truck', 'ABC2345', '2024-11-01', 2021, 'Diesel'),
-('C6FMPK4JX5HGB56789', 'Porsche', '911', 'Coupe', 'DEF6789', '2025-01-15', 2020, 'Gasoline'),
-('D7FMAK4JX5HGC67890', 'Land Rover', 'Discovery', 'SUV', 'GHI9012', '2024-03-30', 2021, 'Diesel'),
-('E8C4PDCAB4JT679876', 'Audi', 'Q5', 'SUV', 'JKL3456', '2023-10-10', 2020, 'Hybrid'),
-('F9T1BF1FK0HU234567', 'BMW', 'X3', 'SUV', 'MNO6789', '2025-07-01', 2019, 'Gasoline'),
-('G0XYKT3A64FG234567', 'Mercedes', 'C-Class', 'Sedan', 'PQR8901', '2024-09-30', 2021, 'Diesel'),
-('H1FMPK4JX5HGB67890', 'Lexus', 'RX', 'SUV', 'STU1234', '2023-12-15', 2022, 'Gasoline'),
-('I2FMAK4JX5HGC78901', 'Volvo', 'XC60', 'SUV', 'VWX5678', '2024-05-10', 2019, 'Hybrid'),
-('J3C4PDCAB4JT789012', 'Infiniti', 'QX50', 'SUV', 'YZA6789', '2025-04-15', 2021, 'Diesel'),
-('K4T1BF1FK0HU345678', 'Acura', 'MDX', 'SUV', 'BCD9012', '2023-08-01', 2022, 'Gasoline'),
-('L5XYKT3A64FG345678', 'Jaguar', 'F-PACE', 'SUV', 'EFG2345', '2024-11-15', 2021, 'Diesel'),
-('M6FMPK4JX5HGB78901', 'Genesis', 'GV80', 'SUV', 'HIJ5678', '2025-06-01', 2020, 'Hybrid'),
-('N7FMAK4JX5HGC89012', 'Maserati', 'Levante', 'SUV', 'JKL6789', '2024-02-15', 2019, 'Gasoline'),
-('O8C4PDCAB4JT890123', 'Alfa Romeo', 'Stelvio', 'SUV', 'MNO7890', '2025-01-01', 2022, 'Diesel'),
-('P9T1BF1FK0HU456789', 'Ferrari', 'Portofino', 'Coupe', 'PQR8901', '2023-12-31', 2021, 'Gasoline');
+INSERT INTO vehicles (vin, make, model, vehicle_type, registration_number, technical_inspection_due_date, production_year, fuel_type, inner_side_registration_card, outer_side_registration_card) VALUES
+-- Samochody osobowe
+('1HGBH41JXMN109186', 'Toyota', 'Camry', 'Samochód osobowy', 'ABC1234', '2024-09-01', 2020, 'Benzyna'),
+('1FTFW1EF1EFB12345', 'Ford', 'Focus', 'Samochód osobowy', 'XYZ5678', '2024-10-01', 2019, 'Diesel'),
+('3FA6P0H70KR123456', 'Honda', 'Civic', 'Samochód osobowy', 'LMN9012', '2024-11-01', 2021, 'Benzyna'),
+('1FMCU0G91KUB12345', 'Mazda', '3', 'Samochód osobowy', 'QWE3456', '2024-12-01', 2022, 'Benzyna',),
+('2C4RC1BG1KR123456', 'Nissan', 'Altima', 'Samochód osobowy', 'RTY7890', '2025-01-01', 2018, 'Diesel'),
+('1HGBH41JXMN109187', 'Audi', 'A4', 'Samochód osobowy', 'ASD1234', '2025-02-01', 2021, 'Benzyna'),
+('3FA6P0H70KR123457', 'BMW', '3 Series', 'Samochód osobowy', 'FGH5678', '2025-03-01', 2022, 'Benzyna'),
+('1FMCU0G91KUB12346', 'Mercedes', 'C-Class', 'Samochód osobowy', 'JKL9012', '2025-04-01', 2023, 'Diesel'),
+('2C4RC1BG1KR123457', 'Volkswagen', 'Passat', 'Samochód osobowy', 'ZXC3456', '2025-05-01', 2019, 'Benzyna'),
+('1HGBH41JXMN109188', 'Subaru', 'Impreza', 'Samochód osobowy', 'VBN7890', '2025-06-01', 2020, 'Diesel'),
+('3FA6P0H70KR123458', 'Kia', 'Optima', 'Samochód osobowy', 'MNB1234', '2025-07-01', 2021, 'Benzyna'),
+('1FMCU0G91KUB12347', 'Hyundai', 'Elantra', 'Samochód osobowy', 'YUI5678', '2025-08-01', 2022, 'Diesel'),
+
+-- Motocykle
+('1HD1KBC16DB123456', 'Harley-Davidson', 'Sportster', 'Motocykl', 'ABCD1234', '2024-09-01', 2020, 'Benzyna'),
+('JH2RC4914LK123456', 'Yamaha', 'MT-07', 'Motocykl', 'EFGH5678', '2024-10-01', 2021, 'Benzyna'),
+('1HD1JRV1XKB123456', 'Kawasaki', 'Ninja ZX-6R', 'Motocykl', 'IJKL9012', '2024-11-01', 2022, 'Benzyna'),
+
+-- Inne rodzaje pojazdów
+('1HTMMAAM7CH123456', 'International', 'LT', 'Ciężarówka', 'MNO1234', '2025-01-01', 2019, 'Diesel'),
+('1FTEW1E88GFC12345', 'Freightliner', 'Cascadia', 'Ciężarówka', 'PQR5678', '2025-02-01', 2020, 'Diesel'),
+('3B7HF13Z52M123456', 'Peterbilt', '579', 'Ciężarówka', 'STU9012', '2025-03-01', 2021, 'Diesel'),
+('4JGBB86E49A123456', 'Volvo', 'VNL', 'Ciężarówka', 'VWX3456', '2025-04-01', 2022, 'Diesel'),
+('1GTR1MEX9JZ123456', 'Mack', 'Anthem', 'Ciężarówka', 'YZA7890', '2025-05-01', 2023, 'Diesel'),
+
+-- Ciągniki rolnicze
+('1H1C1000032345678', 'John Deere', '5055E', 'Ciągnik rolniczy', 'TRC1234', '2025-06-01', 2019, 'Diesel'),
+('2H1C2000043456789', 'Case IH', 'Maxxum 130', 'Ciągnik rolniczy', 'TRC5678', '2025-07-01', 2020, 'Diesel');
+
+
 
 INSERT INTO vehicles_users (vehicle_id, user_id, ownership_start_date, ownership_end_date) VALUES
 (1, 1, '2021-01-01', NULL),
 (2, 1, '2022-01-15', NULL),
 (3, 1, '2023-02-20', NULL),
-(4, 2, '2022-06-01', NULL),
-(5, 2, '2023-03-30', NULL),
 (6, 2, '2024-01-15', NULL),
 (7, 3, '2021-07-01', NULL),
 (8, 3, '2022-05-20', NULL),
-(9, 4, '2023-02-15', NULL),
-(10, 4, '2024-08-25', NULL),
-(11, 5, '2021-12-01', NULL),
-(12, 5, '2022-11-01', NULL),
 (13, 6, '2023-05-15', NULL),
 (14, 6, '2024-02-10', NULL),
 (15, 7, '2021-10-20', NULL),
@@ -87,13 +84,7 @@ INSERT INTO vehicles_users (vehicle_id, user_id, ownership_start_date, ownership
 (17, 8, '2023-06-01', NULL),
 (18, 8, '2024-03-01', NULL),
 (19, 9, '2021-11-01', NULL),
-(20, 9, '2022-10-01', NULL),
-(21, 10, '2023-03-15', NULL),
-(22, 10, '2024-01-30', NULL),
-(23, 1, '2024-05-15', NULL),
-(24, 2, '2024-07-01', NULL),
-(25, 3, '2024-08-20', NULL);
-
+(20, 9, '2022-10-01', NULL);
 
 INSERT INTO forms (form_date, ex_owner_id, new_owner_id, form_vehicle_id) VALUES
 ('2023-03-15', 1, 2, 1),
@@ -116,5 +107,51 @@ INSERT INTO forms (form_date, ex_owner_id, new_owner_id, form_vehicle_id) VALUES
 ('2024-08-20', 9, 10, 18),
 ('2024-09-15', 10, 1, 19),
 ('2024-11-10', 1, 2, 20);
+
+
+--- ZAPYTANIA, KTÓRE PRZYDADZĄ SIĘ DO REQUESTÓW:
+
+
+--- 1. WYŚWIETLANIE POJAZDÓW NALEZĄCYCH DO DANEGO UZYTKOWNIKA
+
+--- połączone tabele users, vehicles, vehicles_users
+--- gdy chcemy wyswietlic samochody nalezace do danego uzytkownika:
+SELECT 
+    v.make AS vehicles_make,
+    v.model, v.vin, v.registration_number, v.technical_inspection_due_date
+FROM 
+    users u
+INNER JOIN 
+    vehicles_users vu ON u.id = vu.user_id
+INNER JOIN 
+    vehicles v ON vu.vehicle_id = v.id
+WHERE 
+    u.id = {current_user.id}
+
+
+--- 2. WYSWIETLANIE FORMULARZY, W KTÓRYCH UZYTKOWNIK JEST ALBO STROANA KUPUJĄCĄ, ALBO SPRZEDAJĄCĄ
+--- (to jest do strony /forms)
+--- data, sprzedajacy, kupujacy, pojazd 
+--- w tabeli forms mozemy sie posluzyc nazwa 
+
+SELECT 
+    f.id AS form_id,
+    u1.first_name AS seller_first_name,
+    u1.surname AS seller_surname,
+    u2.first_name AS buyer_first_name,
+    u2.surname AS buyer_surname,
+    v.make AS vehicle_make,
+    v.model AS vehicle_model
+FROM 
+    forms f
+JOIN 
+    users u1 ON f.ex_owner_id = u1.id
+JOIN 
+    users u2 ON f.new_owner_id = u2.id
+JOIN 
+    vehicles v ON f.form_vehicle_id = v.id
+WHERE f.new_owner_id = 7
+
+
 
 

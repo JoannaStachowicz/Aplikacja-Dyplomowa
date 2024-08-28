@@ -1,8 +1,11 @@
+// endpointy do pobierania listy pojazdów i rejestrowania pojazdu
+
 import express from "express";
-import {  } from "../controllers/car.js";
+import { getCars, regCar } from "../controllers/car.js";
 
 const router = express.Router()
 
-router.get("", )
+router.get("/cars", getCars)
+router.post("/carReg", regCar)
 
 export default router
