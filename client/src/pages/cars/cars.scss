@@ -1,0 +1,59 @@
+// część stylistyczna do widoku strony moje pojazdy
+
+.cars {
+    display: flex;
+    background-color: rgb(238, 238, 238);
+    min-height: 100vh;
+    max-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: auto;
+    box-sizing: border-box;
+    scroll-padding: 50px;
+    
+    .car {
+        display: flex;
+        flex-direction: column;
+        height: 320px;
+        width: 360px;
+        background-color: white;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        overflow: scroll;
+
+    
+        h2 {
+            text-align: center;
+            color: rgb(46, 46, 46);
+            font-size: large;
+        }
+
+
+        span {
+            margin-left: 10px;
+            font-size: 15px;
+        }
+
+        p {
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+
+        }
+        button{
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: lightgray;
+            font-weight: bold;
+            font-size: 12px;
+            height: 30px;
+            color:rgb(41, 38, 38);
+            border-radius: 10px;
+            width: 80;
+        }
+    }
+}

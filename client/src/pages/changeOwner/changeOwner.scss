@@ -1,0 +1,107 @@
+// plik do stylizacji strony zmiany właściciela
+
+.changeOwner{
+    height: 100vh;
+    display: flex;
+    background-color: rgb(238, 238, 238);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h1{
+        color: rgb(46, 46, 46);
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+
+    .card{
+        max-width: 850px;
+        min-width: 850px;
+        
+        h2 {
+            margin-top: 20px;
+            text-align: center;
+            color: rgb(46, 46, 46);
+        }
+
+        span {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        align-items: flex-start;
+        width: 60%;
+        display: flex;
+        background-color: white;
+        border-radius: 12px;
+        min-height: 600px;
+        
+
+        .left{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+
+            p {
+                color:rgb(217, 54, 54);
+                font-size: 12px;
+            }
+
+            form{
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+
+                input {
+                    border: 1px solid lightgray;
+                    border-radius: 10px;
+                    padding: 20px 10px;
+        
+                }
+            }
+        }
+
+
+        .right{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            gap: 20px;
+
+            form{
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                
+                input{
+
+                    border: none;
+                    border-radius: 10px;
+                    padding: 20px 10px;
+                    font-size: 15px;
+                }
+            }
+
+            button{
+                padding: 10px;
+                cursor: pointer;
+                border: none;
+                background-color: lightgray;
+                font-weight: bold;
+                font-size: 15px;
+                height: 50px;
+                color:rgb(41, 38, 38);
+                border-radius: 15px;
+            }
+        }
+    }
+}

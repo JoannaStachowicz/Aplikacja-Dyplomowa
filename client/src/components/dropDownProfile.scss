@@ -1,0 +1,31 @@
+.dropDownProfile {
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 20px;
+    gap: 20px;
+    position: absolute;
+    top: 3.5rem;
+    right: 1.2rem;
+    padding: 14px;
+    border-radius: 10px;
+    width: 120px;
+    background-color: white;
+    border: 2px solid rgb(203, 203, 203);
+    list-style-type: none;
+
+    li {
+        gap: 20px;
+    }
+
+     a {
+        color: rgb(41, 38, 38);
+        text-decoration: none;
+     }
+
+     p {
+        cursor: pointer;
+        margin-right: 12px;
+        margin-bottom: 4px;
+    }
+}
+

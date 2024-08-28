@@ -1,0 +1,134 @@
+// plik do stylizacji stromy z profilem uzytkownika 
+
+$item-width: 320px;
+$item-height: 600px;
+$item-background-color: white;
+
+.userProfile {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(238, 238, 238);
+    gap: 30px;
+
+    span{
+        font-size: 20px;
+        overflow-wrap: break-word;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: bold;
+        overflow-wrap: break-word;
+    }
+
+    h2{
+        align-self: center;
+        color: rgb(46, 46, 46);
+    }
+
+    button {
+        padding: 10px;
+        font-size: 15px;
+        width: 120px;
+        height: 48px;
+        align-self: center;
+        cursor: pointer;
+        border: none;
+        background-color: lightgray;
+        position: absolute;
+        bottom: 0;
+        font-weight: bold;
+        color:rgb(41, 38, 38);
+        border-radius: 15px;
+    }
+
+    .user_info{
+        width: $item-width;
+        height: $item-height;
+        display: flex;
+        flex-direction: column;
+        background-color: $item-background-color;
+        border-radius: 12px;
+        margin-bottom: 32px;
+
+        form{
+            display: flex;
+            align-items: left;
+            margin-left: 20px;
+            flex-direction: column;
+            gap: 10px;
+
+            span {
+                margin-top: 10px;
+                font-size: 16px;
+            }
+
+            input {
+                //border: none;
+                border: 1px solid lightgray;
+                border-radius: 10px;
+                padding: 20px 10px;
+                //align-self: center;
+                width: 250px;
+                height: 10px;
+            }
+        }
+    }
+
+
+    .document, .address {
+        width: $item-width;
+        height: $item-height;
+        display: flex;
+        flex-direction: column;
+        background-color: $item-background-color;
+        border-radius: 12px;
+        margin-bottom: 32px;
+
+        .exact_address{
+            display: flex;
+            gap: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            overflow-wrap: break-word;
+        }
+
+        h3{
+
+            color: crimson;
+            font-size: 20px;
+            align-self: center;
+            justify-self: center;
+            margin: 20px;
+        }
+
+        form{
+            display: flex;
+            align-items: left;
+            margin-left: 20px;
+            flex-direction: column;
+            gap: 10px;
+
+            span {
+                margin-top: 10px;
+                font-size: 16px;
+            }
+
+            input {
+                //border: none;
+                border: 1px solid lightgray;
+                border-radius: 10px;
+                padding: 20px 10px;
+                //align-self: center;
+                width: 250px;
+                height: 10px;
+    
+            }
+        }
+    }
+}

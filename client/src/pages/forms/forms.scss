@@ -1,0 +1,58 @@
+// plik do stylizacji strony z formularzami
+
+.forms {
+    display: flex;
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    height: 100vh;
+
+
+    .container {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; 
+            justify-content: center; 
+            width: 70%;
+            height: 70%;
+
+            .item {
+                
+                width: 320px;
+                height: 300px;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                min-width: 200px;
+                box-sizing: border-box;
+
+                p {
+                    font-weight: bold;
+                }
+
+            }
+    
+
+            .item_empty {
+                visibility: hidden;
+                width: calc((100% / 3) - 20px);
+                height: 300px;
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+        }     
+    } 
+}
+
+
+
+
