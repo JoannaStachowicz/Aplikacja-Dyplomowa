@@ -9,4 +9,4 @@ Aby uruchomić aplikację, należy sklonowac lokalnie repozytorium, zainstalowa�
 2) uruchom aplikację backendową poleceniem: npm start lub yarn start
 
 3) w drugim oknie terminala przejść do folderu client poleceniem: cd sciezka/do/client
-4) uruchom aplikację React poleceniem: nom start lub yarn start
+4) uruchom aplikację React poleceniem: npm start lub yarn start
