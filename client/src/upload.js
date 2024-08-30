@@ -2,7 +2,6 @@ import axios from "axios";
 export const upload = async (file) => {
 
     try{
-
         console.log("Uploading file:", file);
 
         // musimy stworzyc formdata, bo nie da sie przeslac pliku bezposrednio do api

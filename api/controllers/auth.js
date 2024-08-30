@@ -25,7 +25,6 @@ export const register = (req, res) => {
         if (err) return res.status(500).json(err);
         if(data.rows.length) return res.status(409).json("Użytkownik o podanym adresie e-mail lub peselu już istnieje.");
 
-
         if (pwd !== confirm_pwd) return res.status(409).json("Hasła są różne.");
 
         // liczba rund "solanki"

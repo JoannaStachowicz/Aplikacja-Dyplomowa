@@ -97,6 +97,7 @@ export const addDoc = (req, res) => {
 
             const q_insert = "INSERT INTO documents (document_type, document_number, issue_date, expiry) VALUES ($1, $2, TO_DATE($3, 'YYYY-MM-DD'), TO_DATE($4, 'YYYY-MM-DD')) RETURNING id";
             const values_insert = [document_type, document_number, issue_date, expiry];
+            console.log(values_insert)
             const q_res = await client.query(q_insert, values_insert);
 
             const new_doc_id = q_res.rows[0].id;

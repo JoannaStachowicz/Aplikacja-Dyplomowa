@@ -7,6 +7,7 @@ import axios from "axios";
 import { useQuery, useMutation } from "react-query";
 import { selectStyles } from "../carReg/select_opts"
 import { upload } from "../../upload";
+import { useNavigate } from "react-router-dom";
 
 // teoretycznie sam pesel by wystarczył do wprowadzenia danych nowego wlasciciela, 
 // ale prewencyjnie wymagane jest takze podanie imienia i nazwiska
@@ -18,6 +19,9 @@ const ChangeOwner = () => {
     const [firstSide, setFirsSide] = useState(null);
     const [secondSide, setSecondSide] = useState(null);
 
+    const [err, setError] = useState(false);
+    const navigate = useNavigate();
+
     const [inputs, setInputs] = useState({
         pesel: "",
         first_name: "",
@@ -25,7 +29,6 @@ const ChangeOwner = () => {
         vehicle_id: "",
 
     });
-    const [err, setError] = useState(false);
 
     // pobieranie pojazdów do wyswietlenia
 
@@ -48,6 +51,14 @@ const ChangeOwner = () => {
         return axios.post("/changeOwner", newData, {
             withCredentials: true,
         });
+    }, 
+    {
+        onSuccess: () => {
+            navigate("/forms")
+        },
+        onError: (err) => {
+            setError(err.response.data);
+        }
     });
 
     const handleChange = e => {
@@ -81,9 +92,8 @@ const ChangeOwner = () => {
             };
             
             mutation.mutate(newData);
-        } catch (error) {
-            console.error("Błąd:", error);
-            setError(error.response?.data);
+        } catch (err) {
+            setError(err.response.data);
         }
     }; 
 
@@ -102,7 +112,7 @@ const ChangeOwner = () => {
                     <input type="text" placeholder="Jan" name="first_name" onChange={handleChange}/>
                     <span>Nazwisko</span>
                     <input type="text" placeholder="Kowalski" name="surname" onChange={handleChange}/>
-                    {err && <p> {err} </p>}
+                    {err && <p style={{fontSize: "16px", color: "red"}}> {err} </p>}
                 </form>
             </div>
 

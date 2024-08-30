@@ -52,6 +52,7 @@ const Form = () => {
                 };
             try {
                 mutation.mutate(newData);
+                window.location.reload();
     
             } catch (err) {
                 setError(err.response.data.message);
@@ -73,6 +74,7 @@ const Form = () => {
                 };
             try {
                 mutation.mutate(newData);
+                window.location.reload();
     
             } catch (err) {
                 setError(err.response.data.message);

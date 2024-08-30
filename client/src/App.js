@@ -31,9 +31,7 @@ function App() {
       <Navbar/>
       <Outlet/>
     </div>
-
-  )
-  }
+  )}
 
   const ProtectedRoute = ({children}) => {
     if (!currentUser) {

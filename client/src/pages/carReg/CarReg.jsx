@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import { selectOptions_type, selectOptions, selectStyles, selectOption_body } from "./select_opts";
 import { upload } from "../../upload";
+import { useNavigate } from "react-router-dom";
 
 
 const CarReg = () => {
@@ -14,6 +15,8 @@ const CarReg = () => {
     const [innerSide, setInnerSide] = useState(null);
     const [outerSide, setOuterSide] = useState(null);
 
+    const [err, setError] = useState(false);
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({
 
         vehicle_type: "",
@@ -35,10 +38,10 @@ const CarReg = () => {
     }, 
     {
         onSuccess: () => {
-            queryClient.invalidateQueries(['cars']);
+            navigate("/cars")
         },
-        onError: (error) => {
-            console.log("Error:", error);
+        onError: (err) => {
+            setError(err.response.data);
         }
     });
 
@@ -73,6 +76,7 @@ const CarReg = () => {
         };
         
         mutation.mutate(carData);
+
     }; 
 
     return (
@@ -133,6 +137,7 @@ const CarReg = () => {
                     <span>Zdjęcie/skan drugiej strony (opcjonalnie) świadectwa homologacji:</span>
                     <input type="file" name="outerSide" id="" style={{border:"none"}} onChange={e=>setOuterSide(e.target.files[0])}/>
                     <button onClick={handleClick}>Zarejestruj pojazd</button>
+                    {err && <p style={{fontSize: "16px", color: "red"}}> {err} </p>}
                 </form>
             </div>
         </div>

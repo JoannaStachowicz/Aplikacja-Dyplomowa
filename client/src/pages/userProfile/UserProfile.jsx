@@ -37,6 +37,8 @@ const UserProfile = () => {
         country: ""
     });
 
+    // ładowanie danych o uzytkowniku z bazy
+
     const { isLoading: isLoadingUser, error: userError, data: userData } = useQuery(['users'], () =>
         axios.get("/user/userProfile", { withCredentials: true }).then(res => res.data)
     );
@@ -68,6 +70,13 @@ const UserProfile = () => {
                 document_number: documentData[0].document_number || "",
                 issue_date: documentData[0].issue_date || "",
                 expiry: documentData[0].expiry || ""
+            });
+        } else {
+            setInputsDocument({
+                document_type: "", 
+                document_number: "", 
+                issue_date: "", 
+                expiry: ""
             });
         }
     }, [documentData]);
@@ -116,6 +125,7 @@ const UserProfile = () => {
             });
         }
     );
+
     const mutation_addressChange = useMutation(
         (address) => {
             return axios.put("/user/changeAddress", address, {
@@ -123,6 +133,18 @@ const UserProfile = () => {
             });
         }
     );
+
+    const mutation_documentAdd = useMutation((newDoc) => {
+        return axios.post("/user/addDocument", newDoc, {
+            withCredentials: true,
+        });
+    });
+
+    const mutation_AddressAdd = useMutation((newAdd) => {
+        return axios.post("/user/addAddress", newAdd, {
+            withCredentials: true,
+        });
+    });
 
     // przyciski edytuj / zatwierdz
 
@@ -143,8 +165,14 @@ const UserProfile = () => {
         const button_name = e.target.name;
 
         if(button_name === "zapisz") {
-            mutation_documentChange.mutate( {...inputsDocument} )
+            if(userData[0].document_id === null) {
+                mutation_documentAdd.mutate( {...inputsDocument} )
+                window.location.reload();
 
+            } else {
+                mutation_addressChange.mutate( {...inputsDocument} )
+                window.location.reload();
+            }
         }
         setIsEditing_document(!isEditing_document);
     };
@@ -154,7 +182,11 @@ const UserProfile = () => {
         const button_name = e.target.name;
 
         if(button_name === "zapisz") {
-            mutation_addressChange.mutate( {...inputsAddress} )
+            if(userData[0].address_id === null) {
+                mutation_AddressAdd.mutate( {...inputsAddress} )
+            } else {
+                mutation_addressChange.mutate( {...inputsAddress} )
+            }
         }
         setIsEditing_address(!isEditing_address);
     };
@@ -200,7 +232,7 @@ const UserProfile = () => {
 
 
     <div className="document">
-    {isLoadingUser ? "loading" : (
+    {isLoadingDocument ? "loading" : (
     <>
         <h2>Dokument</h2>
 

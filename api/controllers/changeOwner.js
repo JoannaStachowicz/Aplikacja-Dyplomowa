@@ -11,7 +11,7 @@ export const InitChangeOwn = (req, res) => {
     const { vehicle_id, pesel, first_name, surname, first_side_sale_agreement, second_side_sale_agreement } = req.body;
 
     if (isNaN(vehicle_id)) {
-        return res.status(400).json({ message: "Invalid vehicle_id." });
+        return res.status(400).json("Nie znaleziono id pojazdu.");
     }
 
     const token = req.cookies.access_token;
@@ -25,68 +25,81 @@ export const InitChangeOwn = (req, res) => {
 
         if (err) return res.status(403).json("Niewazny token.");
 
-        const q = "SELECT * FROM users WHERE pesel = $1 AND first_name = $2 AND surname = $3";
-        const values_1 = [pesel, first_name, surname];
+        // nalezy zrobic weryfikacje, czy aktualnie zalogowany uzytkownik ma uzupelnione informacje o dokumencie oraz adresie,
+        // jesli nie - nie moze dokonywac rejestracji oraz zmiany wlascicielstwa pojazdów
 
-        db.query(q, values_1, async (err, data) => {
+        const q_check = "SELECT document_id, address_id from users WHERE id = $1"
 
-            // czy w bazie danych jest uzytkownik, ktorego user wskazal jako nabywce pojazdu
+        db.query(q_check, [userData.id], (err, data) => {
 
-            if (err) return res.status(500).json(err);
-            if (data.rows.length === 0) {
-                console.log("dupa")
-                return res.status(404).json("Nie znaleziono użytkownika.");
-            }
-            if (data.rows[0].id === userData.id) {
-                return res.status(400).json({ message: "Nie można wysyłać formularzy do samego siebie xD" });
-            }
+            if(data.rows[0].document_id === null) {
+                return res.status(409).json("Żeby przerejestrować pojazd, uzupełnij informacje o dokumencie tożsamości na swoim profilu.");
+            } else if(data.rows[0].address_id === null) {
 
-            const new_owner_id = data.rows[0].id;
-            const client = await db.connect();
-
-
-            try {
-
-                // rozpoczecie transakcji
-
-                await client.query('BEGIN');
-
-                const curr_date = new Date();
-                
-
-                // dodanie formularza odnosnie przenoszenia wlasnosci (domyslnie wartosc "oczekuje")
-
-                const q3 = 'INSERT INTO forms (form_date, ex_owner_id, new_owner_id, form_vehicle_id, first_side_sale_agreement, second_side_sale_agreement) VALUES ($1, $2, $3, $4, $5, $6)';
-                const values_form_insertion = [curr_date, userData.id, new_owner_id, vehicle_id, first_side_sale_agreement, second_side_sale_agreement];
-                await client.query(q3, values_form_insertion);
-
-
-                await client.query('COMMIT');
-
-                return res.status(200).json("Formularz został wysłany do nabywcy.");
-
+                return res.status(409).json("Żeby przerejestrować pojazd, uzupełnij informacje o adresie na swoim profilu.");
     
-            } catch(err) {
+            } else {
 
-                await client.query('ROLLBACK'); // cofanie zmian w przypadku błędu
-
-                console.error("Błąd podczas transakcji: ", err.message);
-                console.error("Szczegóły błędu: ", err.stack);
+                const q = "SELECT * FROM users WHERE pesel = $1 AND first_name = $2 AND surname = $3";
+                const values_1 = [pesel, first_name, surname];
+        
+                db.query(q, values_1, async (err, data) => {
+        
+                    // czy w bazie danych jest uzytkownik, ktorego user wskazal jako nabywce pojazdu
+        
+                    if (err) return res.status(500).json(err);
+                    if (data.rows.length === 0) {
+                        return res.status(409).json("Nie znaleziono użytkownika.");
+                    }
+                    if (data.rows[0].id === userData.id) {
+                        return res.status(409).json("Nie można wysyłać formularzy do samego siebie xD");
+                    }
+        
+                    const new_owner_id = data.rows[0].id;
+                    const client = await db.connect();
+        
+        
+                    try {
+        
+                        // rozpoczecie transakcji
+        
+                        await client.query('BEGIN');
+        
+                        const curr_date = new Date();
+                        
+        
+                        // dodanie formularza odnosnie przenoszenia wlasnosci (domyslnie wartosc "oczekuje")
+        
+                        const q3 = 'INSERT INTO forms (form_date, ex_owner_id, new_owner_id, form_vehicle_id, first_side_sale_agreement, second_side_sale_agreement) VALUES ($1, $2, $3, $4, $5, $6)';
+                        const values_form_insertion = [curr_date, userData.id, new_owner_id, vehicle_id, first_side_sale_agreement, second_side_sale_agreement];
+                        await client.query(q3, values_form_insertion);
+        
+        
+                        await client.query('COMMIT');
+        
+                        return res.status(200).json("Formularz został wysłany do nabywcy.");
+        
             
-                return res.status(500).json({
-                    message: "Wystąpił błąd podczas transakcji",
-                    error: err.message 
+                    } catch(err) {
+        
+                        await client.query('ROLLBACK'); // cofanie zmian w przypadku błędu
+        
+                        console.error("Błąd podczas transakcji: ", err.message);
+                        console.error("Szczegóły błędu: ", err.stack);
+                    
+                        return res.status(500).json({
+                            message: "Wystąpił błąd podczas transakcji",
+                            error: err.message 
+                        });
+            
+                    } finally {
+                        client.release();
+                    }
                 });
-    
-            } finally {
-                client.release();
             }
         });
-
-    })
-
-};
-
+    });
+ };
 
 export const FinishChangeOwn = (req, res) => {
 
